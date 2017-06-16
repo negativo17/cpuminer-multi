@@ -2,7 +2,7 @@
 
 Name:           cpuminer-multi
 Version:        1.3.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Multi-threaded CPU miner
 License:        GPLv2 and GPLv3
 URL:            https://github.com/tpruvot/%{name}
@@ -21,6 +21,8 @@ BuildRequires:  compat-openssl10-devel
 %else
 BuildRequires:  openssl-devel
 %endif
+
+Provides:       cpuminer = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description
 Currently supported
@@ -97,5 +99,8 @@ autoreconf -vif
 %{_mandir}/man1/cpuminer.1*
 
 %changelog
+* Fri Jun 16 2017 Simone Caronni <negativo17@gmail.com> - 1.3.1-2
+- Provide cpuminer.
+
 * Wed Jun 14 2017 Simone Caronni <negativo17@gmail.com> - 1.3.1-1
 - First build.
