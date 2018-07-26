@@ -15,7 +15,6 @@ BuildRequires:  jansson-devel
 BuildRequires:  libcurl-devel >= 7.15.2
 BuildRequires:  libstdc++-devel
 BuildRequires:  libtool
-BuildRequires:  mpir-devel
 BuildRequires:  openssl-devel
 
 Provides:       cpuminer = %{?epoch:%{epoch}:}%{version}-%{release}
