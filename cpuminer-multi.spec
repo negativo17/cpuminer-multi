@@ -1,20 +1,13 @@
-%global commit0 41da2b4cc1c14b2837f7f6ec9040b1f4c3c0e9e0
-%global date 20180714
-%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-#global gittag0 %{version}-multi
+%global gittag0 %{version}-multi
 
 Name:           cpuminer-multi
 Version:        1.3.5
-Release:        1%{!?tag:.%{date}git%{shortcommit0}}%{?dist}
+Release:        2%{?dist}
 Summary:        Multi-threaded CPU miner
 License:        GPLv2 and GPLv3
 URL:            https://github.com/tpruvot/%{name}
 
-%if 0%{?tag:1}
 Source0:        https://github.com/tpruvot/%{name}/archive/v%{gittag0}.tar.gz#/%{name}-%{gittag0}.tar.gz
-%else
-Source0:        https://github.com/tpruvot/%{name}/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
-%endif
 
 BuildRequires:  autoconf
 BuildRequires:  automake
@@ -23,11 +16,7 @@ BuildRequires:  libcurl-devel >= 7.15.2
 BuildRequires:  libstdc++-devel
 BuildRequires:  libtool
 BuildRequires:  mpir-devel
-%if 0%{?fedora} >= 26
-BuildRequires:  compat-openssl10-devel
-%else
 BuildRequires:  openssl-devel
-%endif
 
 Provides:       cpuminer = %{?epoch:%{epoch}:}%{version}-%{release}
 
@@ -89,11 +78,7 @@ Implemented, but untested
     ? shavite3 (INKcoin)
 
 %prep
-%if 0%{?tag:1}
 %autosetup -p1 -n %{name}-%{gittag0}
-%else
-%autosetup -p1 -n %{name}-%{commit0}
-%endif
 
 %build
 export CFLAGS="%{optflags} -fPIC"
@@ -113,6 +98,9 @@ autoreconf -vif
 %{_mandir}/man1/cpuminer.1*
 
 %changelog
+* Thu Jul 26 2018 Simone Caronni <negativo17@gmail.com> - 1.3.5-2
+- Update to final 1.3.5 release.
+
 * Wed Jul 18 2018 Simone Caronni <negativo17@gmail.com> - 1.3.5-1.20180714git41da2b4
 - Update to 1.3.5 snapshot.
 
